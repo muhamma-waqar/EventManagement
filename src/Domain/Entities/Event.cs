@@ -20,7 +20,7 @@ namespace Domain.Entities
         public string Phone { get; private set; }
         public DateTime startDate { get; private set; }
         public DateTime endDate { get; private set; }
-
+        public bool IsComplete { get; private set; }
         public string UserId { get; private set; }
 
         private Event() { }
@@ -37,7 +37,9 @@ namespace Domain.Entities
             string country,
             string phone,
             DateTime startDate,
-            DateTime endDate)
+            DateTime endDate,
+            bool isComplete,
+            string userId)
         {
             return new Event
             {
@@ -52,6 +54,8 @@ namespace Domain.Entities
                 Phone = phone,
                 startDate = startDate,
                 endDate = endDate,
+                IsComplete = isComplete,
+                UserId = userId
             };
         }
     }

@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -174,6 +176,7 @@ namespace Infrastructure.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     startDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     endDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsComplete = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -187,6 +190,33 @@ namespace Infrastructure.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "Admin", "ADMIN" },
+                    { "69925958-d861-4ec8-b651-e6e8887e2c32", "69925958-d861-4ec8-b651-e6e8887e2c32", "User", "USER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar.netdev@gmail.com", true, true, null, "WAQAR.NETDEV@GMAIL.COM", "WAQAR.NETDEV@GMAIL.COM", "AQAAAAIAAYagAAAAEJKrY1yJig4X2wj7AsHR/8qWLgbDIg1cHT06ugRJ5uyU5R14+qjBZQbOkeisirszRQ==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar.netdev@gmail.com" },
+                    { "69925958-d861-4ec8-b651-e6e8887e2c32", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar@gmail.com", true, true, null, "WAQAR@GMAIL.COM", "WAQAR@GMAIL.COM", "AQAAAAIAAYagAAAAEK3o1ODDudwgR/PFxGdhktoHACjFNTSTh4dN9Elh+KU0RnwcNOpUo4XyULwMJtzGsQ==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar@gmail.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "02174cf0–9412–4cfe - afbf - 59f706d72cf6" },
+                    { "69925958-d861-4ec8-b651-e6e8887e2c32", "69925958-d861-4ec8-b651-e6e8887e2c32" }
                 });
 
             migrationBuilder.CreateIndex(

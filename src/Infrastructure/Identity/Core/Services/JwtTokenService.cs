@@ -3,6 +3,7 @@ using Infrastructure.Identity.Settings;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 
 namespace Infrastructure.Identity.Core.Services
 {
@@ -19,27 +20,20 @@ namespace Infrastructure.Identity.Core.Services
             IEnumerable<(string claimType, string claimValue)>? customClaims = null)
         {
             var expiration = DateTime.UtcNow.AddDays(7);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                new Claim(JwtRegisteredClaimNames.Iss, _authSettings.JwtIssuer),
-                new Claim(JwtRegisteredClaimNames.Aud, _authSettings.JwtAudience),
-                new Claim(JwtRegisteredClaimNames.Sub, userId),
-                new Claim(JwtRegisteredClaimNames.UniqueName, uniqueName)
-                }.Concat(
-                    customClaims?.Select(x => new Claim(x.claimType, x.claimValue)) ?? Enumerable.Empty<Claim>())
-                ),
-                Expires = expiration,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(_authSettings.JwtSigningKey), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            var tokenString = tokenHandler.WriteToken(token);
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authSettings.JwtSigningKey));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(_authSettings.JwtIssuer,_authSettings.JwtIssuer,
+              null,
+              expires: DateTime.Now.AddMinutes(120),
+              signingCredentials: credentials);
+
+            var tokenHandler = new JwtSecurityTokenHandler().WriteToken(token);
 
             return new TokenModel(
                 tokenType: "Bearer",
-                accessToken: tokenString,
+                accessToken: tokenHandler,
                 expiresAt: expiration
             );
         }

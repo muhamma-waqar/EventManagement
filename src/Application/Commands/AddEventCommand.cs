@@ -22,5 +22,7 @@ namespace Application.Commands
         public string Phone { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
+        public bool IsComplete {  get; set; }
+        public string UserId { get; set; }
     }
 }

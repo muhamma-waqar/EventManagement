@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20240512111415_initial")]
-    partial class initial
+    [Migration("20240516065941_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsComplete")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -116,6 +119,22 @@ namespace Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
+                            ConcurrencyStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "69925958-d861-4ec8-b651-e6e8887e2c32",
+                            ConcurrencyStamp = "69925958-d861-4ec8-b651-e6e8887e2c32",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -277,6 +296,18 @@ namespace Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
+                            RoleId = "02174cf0–9412–4cfe - afbf - 59f706d72cf6"
+                        },
+                        new
+                        {
+                            UserId = "69925958-d861-4ec8-b651-e6e8887e2c32",
+                            RoleId = "69925958-d861-4ec8-b651-e6e8887e2c32"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -298,16 +329,52 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Infrastructure.Identity.Model.EventUser", b =>
+            modelBuilder.Entity("Infrastructure.Identity.Core.Model.EventUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.HasDiscriminator().HasValue("EventUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
+                            Email = "waqar.netdev@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "WAQAR.NETDEV@GMAIL.COM",
+                            NormalizedUserName = "WAQAR.NETDEV@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJKrY1yJig4X2wj7AsHR/8qWLgbDIg1cHT06ugRJ5uyU5R14+qjBZQbOkeisirszRQ==",
+                            PhoneNumber = "021345",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
+                            TwoFactorEnabled = false,
+                            UserName = "waqar.netdev@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "69925958-d861-4ec8-b651-e6e8887e2c32",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
+                            Email = "waqar@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = true,
+                            NormalizedEmail = "WAQAR@GMAIL.COM",
+                            NormalizedUserName = "WAQAR@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK3o1ODDudwgR/PFxGdhktoHACjFNTSTh4dN9Elh+KU0RnwcNOpUo4XyULwMJtzGsQ==",
+                            PhoneNumber = "021345",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
+                            TwoFactorEnabled = false,
+                            UserName = "waqar@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Event", b =>
                 {
-                    b.HasOne("Infrastructure.Identity.Model.EventUser", null)
+                    b.HasOne("Infrastructure.Identity.Core.Model.EventUser", null)
                         .WithMany("Events")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -365,7 +432,7 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Infrastructure.Identity.Model.EventUser", b =>
+            modelBuilder.Entity("Infrastructure.Identity.Core.Model.EventUser", b =>
                 {
                     b.Navigation("Events");
                 });

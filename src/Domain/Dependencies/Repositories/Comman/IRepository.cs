@@ -12,7 +12,6 @@ namespace Domain.Dependencies.Repositories.Comman
         void Delete(int Id);
         Task<T> Update(T entity);
         Task<IEnumerable<T>> GetAll();
-        Task DeleteAll();
-        Task<IEnumerable<T>> GetById();
+        Task<T> GetById(int Id);
     }
 }

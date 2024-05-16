@@ -56,7 +56,7 @@ namespace Infrastructure.Comman
                         // since we're skipping on separate identity provider for the purpose of this simple showcase API.
                         // For the same reason we're using symmetric key, while in case of a separate identity provider - even if we wanted local key validation - we'd have only the public key of a public/private keypair.
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(authSettings.JwtSigningKey),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authSettings.JwtSigningKey)),
                         ClockSkew = TimeSpan.FromMinutes(5),
 
                         RequireExpirationTime = true,

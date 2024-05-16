@@ -1,44 +1,55 @@
 ﻿using Domain.Dependencies.Repositories.Comman;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Dependencies.Comman
 {
-    internal class Repository<T> : IRepository<T> where T : class 
+    public class Repository<T> : IRepository<T> where T : class 
     {
+        private readonly DbSet<T> _DbSet;
 
-        public Repository() { }
+        public Repository(DbSet<T> dbSet)
+        {
+            _DbSet = dbSet;
+        }
         public Task<T> Add(T entity)
         {
-            throw new NotImplementedException();
+            if(entity == null) throw new ArgumentNullException(nameof(entity));
+            _DbSet.Add(entity);
+            return Task.FromResult(entity);
         }
 
-        public void Delete(int Id)
+        public async void Delete(int Id)
         {
-            throw new NotImplementedException();
+            var result = await _DbSet.FindAsync(Id);
+            if(result != null) { throw  new ArgumentNullException(nameof(result)); }
+            _DbSet.Remove(result);
         }
 
-        public Task DeleteAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            throw new NotImplementedException();
+            var results = await _DbSet.ToListAsync();
+            if(results.Count < 0) { throw new Exception("No record found"); }
+            return results;
         }
 
-        public Task<IEnumerable<T>> GetAll()
+        public async Task<T> GetById(int Id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<T>> GetById()
-        {
-            throw new NotImplementedException();
+            var result = await _DbSet.FindAsync(Id);
+            if (result is null) throw new Exception("No record found");
+            return result;
         }
 
         public Task<T> Update(T entity)
         {
-            throw new NotImplementedException();
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            _DbSet.Update(entity);
+            return Task.FromResult(entity);
         }
     }
 }
