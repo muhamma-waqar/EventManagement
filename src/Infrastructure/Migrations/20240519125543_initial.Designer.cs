@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(EventDbContext))]
-    [Migration("20240516065941_Initial")]
-    partial class Initial
+    [Migration("20240519125543_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,8 +130,8 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = "69925958-d861-4ec8-b651-e6e8887e2c32",
-                            ConcurrencyStamp = "69925958-d861-4ec8-b651-e6e8887e2c32",
+                            Id = "07787d05-98b1-496a-9680-6eb27d37d64e",
+                            ConcurrencyStamp = "07787d05-98b1-496a-9680-6eb27d37d64e",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -305,8 +305,8 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            UserId = "69925958-d861-4ec8-b651-e6e8887e2c32",
-                            RoleId = "69925958-d861-4ec8-b651-e6e8887e2c32"
+                            UserId = "07787d05-98b1-496a-9680-6eb27d37d64e",
+                            RoleId = "07787d05-98b1-496a-9680-6eb27d37d64e"
                         });
                 });
 
@@ -346,7 +346,7 @@ namespace Infrastructure.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "WAQAR.NETDEV@GMAIL.COM",
                             NormalizedUserName = "WAQAR.NETDEV@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJKrY1yJig4X2wj7AsHR/8qWLgbDIg1cHT06ugRJ5uyU5R14+qjBZQbOkeisirszRQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIHHnBs/B0nmDELWS/D88LRmldTV9JJBCBAlpmJoBo9FG7Nag6MPvhNy5cD7jBtmxA==",
                             PhoneNumber = "021345",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
@@ -355,7 +355,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = "69925958-d861-4ec8-b651-e6e8887e2c32",
+                            Id = "07787d05-98b1-496a-9680-6eb27d37d64e",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
                             Email = "waqar@gmail.com",
@@ -363,7 +363,7 @@ namespace Infrastructure.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "WAQAR@GMAIL.COM",
                             NormalizedUserName = "WAQAR@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEK3o1ODDudwgR/PFxGdhktoHACjFNTSTh4dN9Elh+KU0RnwcNOpUo4XyULwMJtzGsQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI5B34335bP6er9EiYp0028iQl2ojvjdmzR0RQMRysIBlbS6GBDLB45Z9oZ2jW94UQ==",
                             PhoneNumber = "021345",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",

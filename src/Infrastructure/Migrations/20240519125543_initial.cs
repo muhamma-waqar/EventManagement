@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -198,7 +198,7 @@ namespace Infrastructure.Migrations
                 values: new object[,]
                 {
                     { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "Admin", "ADMIN" },
-                    { "69925958-d861-4ec8-b651-e6e8887e2c32", "69925958-d861-4ec8-b651-e6e8887e2c32", "User", "USER" }
+                    { "07787d05-98b1-496a-9680-6eb27d37d64e", "07787d05-98b1-496a-9680-6eb27d37d64e", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -206,8 +206,8 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar.netdev@gmail.com", true, true, null, "WAQAR.NETDEV@GMAIL.COM", "WAQAR.NETDEV@GMAIL.COM", "AQAAAAIAAYagAAAAEJKrY1yJig4X2wj7AsHR/8qWLgbDIg1cHT06ugRJ5uyU5R14+qjBZQbOkeisirszRQ==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar.netdev@gmail.com" },
-                    { "69925958-d861-4ec8-b651-e6e8887e2c32", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar@gmail.com", true, true, null, "WAQAR@GMAIL.COM", "WAQAR@GMAIL.COM", "AQAAAAIAAYagAAAAEK3o1ODDudwgR/PFxGdhktoHACjFNTSTh4dN9Elh+KU0RnwcNOpUo4XyULwMJtzGsQ==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar@gmail.com" }
+                    { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar.netdev@gmail.com", true, true, null, "WAQAR.NETDEV@GMAIL.COM", "WAQAR.NETDEV@GMAIL.COM", "AQAAAAIAAYagAAAAEIHHnBs/B0nmDELWS/D88LRmldTV9JJBCBAlpmJoBo9FG7Nag6MPvhNy5cD7jBtmxA==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar.netdev@gmail.com" },
+                    { "07787d05-98b1-496a-9680-6eb27d37d64e", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar@gmail.com", true, true, null, "WAQAR@GMAIL.COM", "WAQAR@GMAIL.COM", "AQAAAAIAAYagAAAAEI5B34335bP6er9EiYp0028iQl2ojvjdmzR0RQMRysIBlbS6GBDLB45Z9oZ2jW94UQ==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -216,7 +216,7 @@ namespace Infrastructure.Migrations
                 values: new object[,]
                 {
                     { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "02174cf0–9412–4cfe - afbf - 59f706d72cf6" },
-                    { "69925958-d861-4ec8-b651-e6e8887e2c32", "69925958-d861-4ec8-b651-e6e8887e2c32" }
+                    { "07787d05-98b1-496a-9680-6eb27d37d64e", "07787d05-98b1-496a-9680-6eb27d37d64e" }
                 });
 
             migrationBuilder.CreateIndex(

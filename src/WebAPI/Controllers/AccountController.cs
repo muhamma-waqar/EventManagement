@@ -18,9 +18,9 @@ namespace WebAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult<LoginResponseDto>> Login([FromBody] LoginDto login)
+        public async Task<ActionResult<LoginResponseDto>> Login(string username , string password)
     => ProduceLoginResponse(
-        await _userService.SignIn(login.Username, login.Password));
+        await _userService.SignIn(username, password));
 
         /// <summary>
         /// OAuth2.0 compliant login endpoint. Used for Swagger login.

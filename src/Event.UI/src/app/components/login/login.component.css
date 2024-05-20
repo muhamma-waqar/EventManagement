@@ -1,0 +1,49 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+
+}
+
+mat-card {
+  width: 600px; /* Adjust width as needed */
+  height: 500px;
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the header content */
+  margin-bottom: 10%;
+  background-color: darkolivegreen;
+}
+
+mat-card-content{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15%;
+}
+
+mat-card-actions{
+  display: flex;
+  justify-content: center
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.example-disabled {
+  display: inline-block;
+}
