@@ -47,7 +47,8 @@ private loginResponse = new LoginResponseDto
       this.loginService.login(email,password).subscribe(
         (response) =>{
         this.loginResponse = response
-        this.router.navigateByUrl('/home')
+        console.log(response)
+        this.router.navigateByUrl('menu')
       },
       (error) =>{
         console.log('login failed',error);

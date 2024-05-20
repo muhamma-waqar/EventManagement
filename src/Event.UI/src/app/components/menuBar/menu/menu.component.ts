@@ -3,6 +3,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -13,4 +14,8 @@ import {MatToolbarModule} from '@angular/material/toolbar'
 })
 export class MenuComponent {
 
+  constructor(private router : Router){}
+  goToEvent(){
+    this.router.navigateByUrl('/addEvent')
+  }
 }
