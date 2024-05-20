@@ -1,4 +1,5 @@
 ﻿using Domain.Dependencies.Repositories;
+using Domain.Dependencies.Repositories.Comman;
 using Domain.Entities;
 using Infrastructure.Context;
 using Infrastructure.Dependencies.Comman;
@@ -15,6 +16,14 @@ namespace Infrastructure.Dependencies
     {
         private readonly EventDbContext _context;
         public EventRepository(EventDbContext dbContext):base(dbContext.Set<Event>()) { this._context = dbContext; }
+
+        public async Task<PageList<Event>> GetAll(int pageNumber, int pageSize)
+        {
+            var source = this._context.Events.AsQueryable();
+            var pageList = new PageList<Event>();
+            return await pageList.GetPageList(source, pageNumber, pageSize);
+            
+        }
 
         public async Task<IEnumerable<Event>> GetCompleteEvents()
         {

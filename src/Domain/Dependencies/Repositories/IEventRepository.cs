@@ -13,5 +13,7 @@ namespace Domain.Dependencies.Repositories
         Task<IEnumerable<Event>> GetPedningEvents();
         Task<IEnumerable<Event>> GetCompleteEvents();
 
+        Task<PageList<Event>> GetAll(int pageNumber, int pageSize);
+
     }
 }
