@@ -3,20 +3,19 @@
     justify-content: center;
     align-items: center;
     height: 100vh; /* Full viewport height */
-  
   }
   
   mat-card {
     width: 600px; /* Adjust width as needed */
-    height: 500px;
+    height: 600px;
   }
   
   mat-card-header {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center align the header content */
-    margin-bottom: 10%;
     background-color: darkolivegreen;
+    padding-bottom: 2%;
   }
   
   mat-card-content{
@@ -28,4 +27,21 @@
   mat-card-actions{
     display: flex;
     justify-content: center
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin-top: 3%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .example-button-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

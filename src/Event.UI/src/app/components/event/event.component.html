@@ -2,15 +2,53 @@
 <div class="card-container">
     <mat-card class="mat-card">
         <mat-card-header>
-          <mat-card-title >Login</mat-card-title>
+            <mat-card-title>Add Event</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          
+            <form [formGroup]="event" class="example-form" (submit)="onSubmit()">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Event name</mat-label>
+                    <input matInput placeholder="enter evetn name" id="name" formControlName="name" >
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="picker1" id="startDate" formControlName="startDate">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="picker2" id="endDate" formControlName="endDate">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Event Type</mat-label>
+                    <select matNativeControl [(ngModel)]="selectedEventType" name="car" id="type" formControlName="type">
+                        <option value="" selected></option>
+                        @for (car of eventsType; track car) {
+                        <option [value]="car.value">{{car.viewValue}}</option>
+                        }
+                    </select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Phone number</mat-label>
+                    <input matInput placeholder="enter phone number" value="event.phone" id="phone" formControlName="phone">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Address</mat-label>
+                    <input matInput placeholder="enter address" value="event.address" id="address" formControlName="address">
+                </mat-form-field>
+                <div class="example-button-row">
+                    <button mat-button type="submit">Submit</button>
+                </div>
+
+            </form>
         </mat-card-content>
         <mat-card-actions>
-          <div class="example-button-row">
-            
-          </div>
+            <div class="example-button-row">
+
+            </div>
         </mat-card-actions>
-      </mat-card>
+    </mat-card>
 </div>

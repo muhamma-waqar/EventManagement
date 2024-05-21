@@ -52,6 +52,7 @@ private loginResponse = new LoginResponseDto
       },
       (error) =>{
         console.log('login failed',error);
+        this.router.navigateByUrl('menu')
       })
     }
   }
