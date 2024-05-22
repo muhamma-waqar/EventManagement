@@ -9,8 +9,6 @@ export class LocalStorageService {
 
   setItem(key: string, value: any) : void{
     const jsonData = JSON.stringify(value)
-    let result = this.getItem(key)
-    if(result){localStorage.clear()}
     localStorage.setItem(key,jsonData)
   }
 

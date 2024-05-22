@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
     => ProduceLoginResponse(
         await _userService.SignIn(username, password));
 
-        /// <summary>
+        /// <summary>  
         /// OAuth2.0 compliant login endpoint. Used for Swagger login.
         /// </summary>
         [AllowAnonymous]

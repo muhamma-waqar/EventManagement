@@ -5,9 +5,9 @@ import { LoginComponent } from './components/login/login.component';
 import { EventComponent } from './components/event/event.component';
 
 export const routes: Routes = [
-    {path:'', component: LoginComponent} ,
-    {path:'menu', component: MenuComponent},
-    {path:'addEvent', component:EventComponent}
+    {path:'', component: LoginComponent},
+    {path: 'menu', component: MenuComponent},
+    {path: 'addEvent', component: EventComponent } 
 ];
 
 @NgModule({

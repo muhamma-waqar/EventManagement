@@ -11,6 +11,7 @@ import {HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,10 @@ import { Router } from '@angular/router';
 export class LoginComponent  implements OnInit{
   loginForm: FormGroup;
 private loginResponse = new LoginResponseDto
-  constructor(private fb: FormBuilder, private loginService : LoginService , private router : Router){
+  constructor(private fb: FormBuilder, 
+    private loginService : LoginService , 
+    private router : Router,
+    private localStorage : LocalStorageService){
     this.loginForm = fb.group({
       email:['',[Validators.required, Validators.email]],
       password:['',[Validators.required]]
@@ -48,6 +52,7 @@ private loginResponse = new LoginResponseDto
         (response) =>{
         this.loginResponse = response
         console.log(response)
+        this.localStorage.setItem('token',response.accessToken);
         this.router.navigateByUrl('menu')
       },
       (error) =>{

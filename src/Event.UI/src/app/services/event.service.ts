@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class EventService {
 
-  private baseUrl = ''
+  private baseUrl = 'https://localhost:7144'
   constructor(private httpClient : HttpClient) 
   {
     
@@ -16,9 +16,6 @@ export class EventService {
 
 
   post(e : EventModel): Observable<EventModel>{
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    return this.httpClient.post<EventModel>(`${this.baseUrl}/event/create`,e,{headers})
+    return this.httpClient.post<EventModel>(`${this.baseUrl}/event/create`,e)
   }
 }
