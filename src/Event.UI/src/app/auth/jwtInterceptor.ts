@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpInterceptorFn } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-export const loggerInterceptor: HttpInterceptorFn = (req, next) =>{
+export const Interceptor: HttpInterceptorFn = (req, next) =>{
     const token = localStorage.getItem('token');
+    const removeQuote = token?.replace(/^"|"$/g, '');
 
     if (token) {
         req = req.clone({
         setHeaders: {
-          Authorization: `${token}`
+          Authorization: `Bearer ${removeQuote}`
         }
       });
     }
 
-    console.log('Request is on its way',token);
+    console.log('Request is on its way',removeQuote);
     console.log('reqeust', req);
     return next(req)
 }

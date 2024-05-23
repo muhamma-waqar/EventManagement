@@ -12,6 +12,7 @@ import {MatSelectModule} from '@angular/material/select'
 import { EventModel } from '../../model/EventModel';
 import { EventService } from '../../services/event.service';
 import { error } from 'console';
+import { MatButtonModule } from '@angular/material/button';
 
 interface EventType {
   value: number;
@@ -33,7 +34,8 @@ interface EventType {
      HttpClientModule,
      MatDatepickerModule,
      MatDatepicker,
-     MatSelectModule
+     MatSelectModule,
+     MatButtonModule
   ],
   providers:[provideNativeDateAdapter()],
   templateUrl: './event.component.html',

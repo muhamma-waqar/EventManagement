@@ -52,7 +52,8 @@ private loginResponse = new LoginResponseDto
         (response) =>{
         this.loginResponse = response
         console.log(response)
-        this.localStorage.setItem('token',response.accessToken);
+        let token = response.accessToken.replace(/^"|"$/g, '');
+        this.localStorage.setItem('token',token);
         this.router.navigateByUrl('menu')
       },
       (error) =>{

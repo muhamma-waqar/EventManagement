@@ -50,7 +50,7 @@ namespace Infrastructure.Comman
                         ValidIssuer = authSettings.JwtIssuer,
 
                         ValidateAudience = true,
-                        ValidAudience = authSettings.JwtIssuer,
+                        ValidAudience = authSettings.JwtAudience,
 
                         // Validate signing key instead of asking authority if signing is valid,
                         // since we're skipping on separate identity provider for the purpose of this simple showcase API.
