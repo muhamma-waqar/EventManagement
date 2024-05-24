@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class changeEventPropertyName : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -166,7 +166,6 @@ namespace Infrastructure.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -176,10 +175,7 @@ namespace Infrastructure.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     startDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     endDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsComplete = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -198,7 +194,7 @@ namespace Infrastructure.Migrations
                 values: new object[,]
                 {
                     { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "Admin", "ADMIN" },
-                    { "07787d05-98b1-496a-9680-6eb27d37d64e", "07787d05-98b1-496a-9680-6eb27d37d64e", "User", "USER" }
+                    { "29464213-0a2b-471e-a5a9-6adbcea3a75b", "29464213-0a2b-471e-a5a9-6adbcea3a75b", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -206,8 +202,8 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar.netdev@gmail.com", true, true, null, "WAQAR.NETDEV@GMAIL.COM", "WAQAR.NETDEV@GMAIL.COM", "AQAAAAIAAYagAAAAEIHHnBs/B0nmDELWS/D88LRmldTV9JJBCBAlpmJoBo9FG7Nag6MPvhNy5cD7jBtmxA==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar.netdev@gmail.com" },
-                    { "07787d05-98b1-496a-9680-6eb27d37d64e", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar@gmail.com", true, true, null, "WAQAR@GMAIL.COM", "WAQAR@GMAIL.COM", "AQAAAAIAAYagAAAAEI5B34335bP6er9EiYp0028iQl2ojvjdmzR0RQMRysIBlbS6GBDLB45Z9oZ2jW94UQ==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar@gmail.com" }
+                    { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar.netdev@gmail.com", true, true, null, "WAQAR.NETDEV@GMAIL.COM", "WAQAR.NETDEV@GMAIL.COM", "AQAAAAIAAYagAAAAEBTOS1XszN6EnHoBg9imLCFb4fCMpiwwFpi6U7XybPVcc++OMmBJVvapW+cVDasS6Q==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar.netdev@gmail.com" },
+                    { "29464213-0a2b-471e-a5a9-6adbcea3a75b", 0, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "EventUser", "waqar@gmail.com", true, true, null, "WAQAR@GMAIL.COM", "WAQAR@GMAIL.COM", "AQAAAAIAAYagAAAAEBIoUM+p3p05sJBu/LRYk2XkRAFxb4SfZGBc1yyABXVIdtNtUH/OC0zx+dt+fumr9Q==", "021345", true, "02174cf0–9412–4cfe - afbf - 59f706d72cf6", false, "waqar@gmail.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -216,7 +212,7 @@ namespace Infrastructure.Migrations
                 values: new object[,]
                 {
                     { "02174cf0–9412–4cfe - afbf - 59f706d72cf6", "02174cf0–9412–4cfe - afbf - 59f706d72cf6" },
-                    { "07787d05-98b1-496a-9680-6eb27d37d64e", "07787d05-98b1-496a-9680-6eb27d37d64e" }
+                    { "29464213-0a2b-471e-a5a9-6adbcea3a75b", "29464213-0a2b-471e-a5a9-6adbcea3a75b" }
                 });
 
             migrationBuilder.CreateIndex(

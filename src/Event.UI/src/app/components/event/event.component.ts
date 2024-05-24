@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select'
-import { EventModel } from '../../model/EventModel';
+import { AddEventCommand } from '../../model/AddEventCommand';
 import { EventService } from '../../services/event.service';
 import { error } from 'console';
 import { MatButtonModule } from '@angular/material/button';
@@ -44,7 +44,7 @@ interface EventType {
 export class EventComponent {
   selectedEventType: string = '';
   event : FormGroup;
-  eventModel = new EventModel();
+  eventModel = new AddEventCommand();
   constructor(private fb: FormBuilder, private eventService : EventService)
   {
     this.event = this.fb.group({
@@ -54,12 +54,10 @@ export class EventComponent {
       address: ['', Validators.required],
       startDate: ['', Validators.required],
       endDate:['', Validators.required],
-      description:[''],
-      city:[''],
-      region:[''],
-      postalCode:[''],
-      country:[''],
-      isComplete:[''],
+      city:['', Validators.required],
+      region:['', Validators.required],
+      postalCode:['', Validators.required],
+      country:['', Validators.required],
       userId:['']
     })
   }
@@ -72,7 +70,8 @@ export class EventComponent {
 
   onSubmit(){
     if(this.event.valid){
-      this.eventModel = this.event.value as EventModel;
+      this.event.controls['userId'].setValue("02174cf0–9412–4cfe-afbf-59f706d72cf6")
+      this.eventModel = this.event.value as AddEventCommand;
       this.eventService.post(this.eventModel).subscribe(
         (response) =>{
           this.eventModel = response;

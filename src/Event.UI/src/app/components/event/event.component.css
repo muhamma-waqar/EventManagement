@@ -1,7 +1,7 @@
 mat-card {
   width: 700px; /* Adjust width as needed */
-  height: 750px;
-  margin-top: 2%;
+  height: 800px;
+  margin-top: 1%;
   margin-right: 35%;
   margin-left: 30%;
 }
@@ -21,7 +21,7 @@ mat-card-content{
 }
 
 .example-button-row{
-  margin-top: 10%;
+  margin-top: 5%;
   margin-right: 10%;
   display: flex;
   justify-content: center;

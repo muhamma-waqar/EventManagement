@@ -10,7 +10,6 @@ namespace Domain.Entities
     public class Event : BaseEntity
     {
         public string Name { get; private set; }
-        public string Description { get; private set; }
         public TypeEnum Type { get; private set; }
         public string Address { get; private set; }
         public string City { get; private set; }
@@ -20,17 +19,14 @@ namespace Domain.Entities
         public string Phone { get; private set; }
         public DateTime startDate { get; private set; }
         public DateTime endDate { get; private set; }
-        public bool IsComplete { get; private set; }
         public string UserId { get; private set; }
 
         private Event() { }
 
         public static Event Create(
             string name, 
-            string description, 
             int type, 
-            string 
-            adderss, 
+            string adderss, 
             string city, 
             string region,
             string postalCode,
@@ -38,13 +34,11 @@ namespace Domain.Entities
             string phone,
             DateTime startDate,
             DateTime endDate,
-            bool isComplete,
             string userId)
         {
             return new Event
             {
                 Name = name,
-                Description = description,
                 Type = (TypeEnum)type,
                 Address = adderss,
                 City = city,
@@ -54,7 +48,6 @@ namespace Domain.Entities
                 Phone = phone,
                 startDate = startDate,
                 endDate = endDate,
-                IsComplete = isComplete,
                 UserId = userId
             };
         }

@@ -27,14 +27,14 @@ namespace Infrastructure.Dependencies
 
         public async Task<IEnumerable<Event>> GetCompleteEvents()
         {
-           var completeEvents  =  _context.Events.Where(x => x.startDate < DateTime.UtcNow && x.IsComplete == true );
+           var completeEvents  =  _context.Events.Where(x => x.startDate < DateTime.UtcNow);
             if(completeEvents.ToList().Count < 0 ) { throw new Exception("No record found"); }
             return (IEnumerable<Event>)completeEvents;
         }
 
         public async Task<IEnumerable<Event>> GetPedningEvents()
         {
-            var completeEvents = _context.Events.Where(x => x.startDate > DateTime.UtcNow && x.IsComplete == false);
+            var completeEvents = _context.Events.Where(x => x.startDate > DateTime.UtcNow);
             if (completeEvents.ToList().Count < 0) { throw new Exception("No record found"); }
             return (IEnumerable<Event>)completeEvents;
         }

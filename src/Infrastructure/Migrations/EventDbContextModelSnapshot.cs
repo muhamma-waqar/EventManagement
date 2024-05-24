@@ -42,16 +42,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsComplete")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,9 +60,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -127,8 +114,8 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = "07787d05-98b1-496a-9680-6eb27d37d64e",
-                            ConcurrencyStamp = "07787d05-98b1-496a-9680-6eb27d37d64e",
+                            Id = "29464213-0a2b-471e-a5a9-6adbcea3a75b",
+                            ConcurrencyStamp = "29464213-0a2b-471e-a5a9-6adbcea3a75b",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -302,8 +289,8 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            UserId = "07787d05-98b1-496a-9680-6eb27d37d64e",
-                            RoleId = "07787d05-98b1-496a-9680-6eb27d37d64e"
+                            UserId = "29464213-0a2b-471e-a5a9-6adbcea3a75b",
+                            RoleId = "29464213-0a2b-471e-a5a9-6adbcea3a75b"
                         });
                 });
 
@@ -343,7 +330,7 @@ namespace Infrastructure.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "WAQAR.NETDEV@GMAIL.COM",
                             NormalizedUserName = "WAQAR.NETDEV@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIHHnBs/B0nmDELWS/D88LRmldTV9JJBCBAlpmJoBo9FG7Nag6MPvhNy5cD7jBtmxA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBTOS1XszN6EnHoBg9imLCFb4fCMpiwwFpi6U7XybPVcc++OMmBJVvapW+cVDasS6Q==",
                             PhoneNumber = "021345",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
@@ -352,7 +339,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = "07787d05-98b1-496a-9680-6eb27d37d64e",
+                            Id = "29464213-0a2b-471e-a5a9-6adbcea3a75b",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
                             Email = "waqar@gmail.com",
@@ -360,7 +347,7 @@ namespace Infrastructure.Migrations
                             LockoutEnabled = true,
                             NormalizedEmail = "WAQAR@GMAIL.COM",
                             NormalizedUserName = "WAQAR@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI5B34335bP6er9EiYp0028iQl2ojvjdmzR0RQMRysIBlbS6GBDLB45Z9oZ2jW94UQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBIoUM+p3p05sJBu/LRYk2XkRAFxb4SfZGBc1yyABXVIdtNtUH/OC0zx+dt+fumr9Q==",
                             PhoneNumber = "021345",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",

@@ -2,9 +2,13 @@
 using Application.Quaries;
 using Domain.Dependencies.Repositories.Comman;
 using Domain.Entities;
+using Infrastructure.Identity.Core.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace WebAPI.Controllers
 {
@@ -12,12 +16,18 @@ namespace WebAPI.Controllers
     public class EventController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public EventController(IMediator mediator) { this._mediator = mediator; }
+        private readonly IUserProvider _userIdProvider;
+        public EventController(IMediator mediator, IUserProvider userProvider) 
+        { 
+            this._mediator = mediator;
+            this._userIdProvider = userProvider ?? throw new ArgumentNullException(nameof(userProvider));
+        }
 
         [HttpPost]
         [Route("event/create")]
-        public async Task<ActionResult<Event>> Create([FromBody] AddEventCommand command)
+        public async Task<ActionResult<Event>> CreateAsync([FromBody] AddEventCommand command)
         {
+            command.userId = this._userIdProvider.GetUserId(); ;
            var result = await this._mediator.Send(command);
             return Ok(result);
         }

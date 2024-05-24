@@ -11,6 +11,9 @@ using Domain.Dependencies.Repositories;
 using Infrastructure.Dependencies;
 using Domain.Dependencies.Repositories.Comman;
 using Infrastructure.Dependencies.Comman;
+using System.Security.Principal;
+using System.Security.Claims;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +35,7 @@ builder.Services.AddCors(options =>
 });
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMySwagger(builder.Configuration);
@@ -41,6 +45,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, JwtTokenService>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUserProvider, UserProvider>();
+//builder.Services.AddTransient<IPrincipal>(provider => provider.GetService<IHttpContextAccessor>().HttpContext.User);
 builder.Services.RegisterMyOptions<AuthenticationSettings>();
 ConfigureJwtAuthentication.ConfigureLocalJwtAuthentication(builder.Services, builder.Configuration.GetMyOptions<AuthenticationSettings>());
 var app = builder.Build();

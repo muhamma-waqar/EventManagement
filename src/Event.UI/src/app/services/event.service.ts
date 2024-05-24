@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EventModel } from '../model/EventModel';
+import { AddEventCommand } from '../model/AddEventCommand';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,13 +9,9 @@ import { Observable } from 'rxjs';
 export class EventService {
 
   private baseUrl = 'https://localhost:7144'
-  constructor(private httpClient : HttpClient) 
-  {
-    
-  }
+  constructor(private httpClient : HttpClient) { }
 
-
-  post(e : EventModel): Observable<EventModel>{
-    return this.httpClient.post<EventModel>(`${this.baseUrl}/event/create`,e)
+  post(e : AddEventCommand): Observable<AddEventCommand>{
+    return this.httpClient.post<AddEventCommand>('https://localhost:7144/event/create',e)
   }
 }
