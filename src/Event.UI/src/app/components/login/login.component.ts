@@ -54,11 +54,11 @@ private loginResponse = new LoginResponseDto
         console.log(response)
         let token = response.accessToken.replace(/^"|"$/g, '');
         this.localStorage.setItem('token',token);
-        this.router.navigateByUrl('menu')
+        this.router.navigateByUrl('home')
       },
       (error) =>{
         console.log('login failed',error);
-        this.router.navigateByUrl('menu')
+        this.router.navigateByUrl('home')
       })
     }
   }

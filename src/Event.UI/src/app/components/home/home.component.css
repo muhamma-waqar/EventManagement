@@ -1,0 +1,40 @@
+.container{
+    margin: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    gap: 25px;
+}
+
+.key-activities{
+    width: 250px;
+    height: 120px;
+    background-color: rgb(0, 128, 64);
+    flex: 2;
+}
+
+.total-overdue{
+    width: 250px;
+    height: 120px;
+    background-color: rgb(255, 51, 0);
+    flex: 2;
+}
+.total-waiting{
+    width: 250px;
+    height: 120px;
+    background-color: rgb(255, 136, 0);
+    flex:2;
+}
+.total-upcomming{
+    width: 250px;
+    height: 120px;
+    background-color: rgb(0, 162, 255);
+    flex: 2;
+}
+
+mat-card-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
