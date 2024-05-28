@@ -9,7 +9,7 @@ export const routes: Routes = [
     {path:'', component: LoginComponent},
     {path: 'menu', component: MenuComponent},
     {path: 'addEvent', component: EventComponent },
-    {path: 'home', component: HomeComponent} 
+    {path: 'home', component: HomeComponent},
 ];
 
 @NgModule({

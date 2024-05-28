@@ -15,7 +15,7 @@ namespace Application.Commands
         public AddEventCommandHandler(IUnitOfWork unitOfWork) { this._unitOfWork = unitOfWork; }
         public async Task<Event> Handle(AddEventCommand request, CancellationToken cancellationToken)
         {
-            var eventData = Event.Create(request.Name, request.Description, (int)request.Type, request.Address, request.City, request.Region, request.PostalCode, request.Country, request.Phone, request.startDate, request.endDate, request.IsComplete, request.UserId);
+            var eventData = Event.Create(request.Name, (int)request.Type, request.Address, request.City, request.Region, request.PostalCode, request.Country, request.Phone, request.startDate, request.endDate, request.UserId);
             var result = await _unitOfWork.EventRepository.Add(eventData);
            await this._unitOfWork.SaveChanges();
             return result;

@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         [Route("event/create")]
         public async Task<ActionResult<Event>> CreateAsync([FromBody] AddEventCommand command)
         {
-            command.userId = this._userIdProvider.GetUserId(); ;
+            command.UserId = this._userIdProvider.GetUserId(); ;
            var result = await this._mediator.Send(command);
             return Ok(result);
         }
