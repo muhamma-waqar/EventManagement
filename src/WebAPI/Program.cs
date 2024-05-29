@@ -14,6 +14,9 @@ using Infrastructure.Dependencies.Comman;
 using System.Security.Principal;
 using System.Security.Claims;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Infrastructure.Services;
+using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +26,8 @@ builder.Services.AddDbContext<EventDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddSingleton<IConnectionMultiplexer>(provider =>
+           ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis")));
 // Add CORS Origin 
 builder.Services.AddCors(options =>
 {
@@ -42,10 +47,12 @@ builder.Services.AddMySwagger(builder.Configuration);
 builder.Services.AddSwaggerGen();
 ConfigureJwtAuthentication.ConfigureIdentityServices(builder.Services, builder.Configuration);
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRedisCacheService,RedisCacheService>();
 builder.Services.AddScoped<ITokenService, JwtTokenService>();
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserProvider, UserProvider>();
+builder.Services.AddScoped<IRedisCacheService, RedisCacheService>();
 //builder.Services.AddTransient<IPrincipal>(provider => provider.GetService<IHttpContextAccessor>().HttpContext.User);
 builder.Services.RegisterMyOptions<AuthenticationSettings>();
 ConfigureJwtAuthentication.ConfigureLocalJwtAuthentication(builder.Services, builder.Configuration.GetMyOptions<AuthenticationSettings>());
