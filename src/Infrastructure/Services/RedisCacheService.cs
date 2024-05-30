@@ -22,19 +22,20 @@ namespace Infrastructure.Services
         // Method to set a value in Redis
         public void Set<T>(string key, T value)
         {
-            var json = JsonSerializer.Serialize(value);
-            _cache.StringSet(key, json);
+           // var json = JsonSerializer.Serialize(value);
+            _cache.StringSet(key, value.ToString());
         }
 
         // Method to get a value from Redis
-        public T Get<T>(string key)
+        public IEnumerable<T> Get<T>(string key)
         {
             RedisValue redisValue = _cache.StringGet(key);
             if (redisValue.IsNullOrEmpty)
             {
-                return default(T);
+                return default(IEnumerable<T>);
             }
-            return JsonSerializer.Deserialize<T>(redisValue);
+            var jsonString = redisValue.ToString();
+            return JsonSerializer.Deserialize<IEnumerable<T>>(jsonString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ;
         }
     }
 }
