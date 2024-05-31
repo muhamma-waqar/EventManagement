@@ -19,6 +19,6 @@ export class MenuComponent {
     this.router.navigateByUrl('/addEvent')
   }
   toToCalander(){
-    this.router.navigateByUrl('/calander');
+    this.router.navigateByUrl('/calandar');
   }
 }
