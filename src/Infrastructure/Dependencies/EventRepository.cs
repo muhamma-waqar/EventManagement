@@ -25,21 +25,22 @@ namespace Infrastructure.Dependencies
 
         public async Task<PageList<Event>> GetAll(int pageNumber, int pageSize)
         {
-            IQueryable<Event> events;
+            //IQueryable<Event> events;
             var pageList = new PageList<Event>();
-            var data = _redisCache.Get<EventDto>(key);
-            List<Event> result = new List<Event>();
-            foreach (var item in data.ToList())
-            {
-                result.Add(Event.Create(item.Name, (int)item.Type, item.Address, item.City, item.Region, item.PostalCode, item.Country, item.Phone, item.startDate, item.endDate, item.UserId));
-            }
-            if(data is null)
-            {
-                events = this._context.Events.AsQueryable();
-                _redisCache.Set(key, events);
-               
-                return await pageList.GetPageList(events, pageNumber, pageSize);
-            }
+            //var data = _redisCache.Get<EventDto>(key);
+            //List<Event> result = new List<Event>();
+            //foreach (var item in data.ToList())
+            //{
+            //    result.Add(Event.Create(item.Name, (int)item.Type, item.Address, item.City, item.Region, item.PostalCode, item.Country, item.Phone, item.startDate, item.endDate, item.UserId));
+            //}
+            //if(data is null)
+            //{
+            //    events = this._context.Events.AsQueryable();
+            //    _redisCache.Set(key, events);
+
+            //    return await pageList.GetPageList(events, pageNumber, pageSize);
+            //}
+            var result = _context.Events.AsQueryable();
             return await pageList.GetPageList(result.AsQueryable(), pageNumber, pageSize);
         }
 

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginResponseDto } from '../../dtos/loginResponseDto';
+import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { LoginResponseDto } from '../../../dtos/loginResponseDto';
-import { LoginService } from '../../../services/login.service';
-import { LocalStoratesService } from '../../../services/local-storates.service';
+import { LocalStoratesService } from '../../services/local-storates.service';
 
 @Component({
   selector: 'app-login',

@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table'
-import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MenuComponent } from '../menu/menu.component';
+
 export interface UserData {
   id: string;
   name: string;
@@ -47,8 +49,7 @@ const NAMES: string[] = [
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements AfterViewInit {
-
+export class HomeComponent implements AfterViewInit{
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   dataSource: MatTableDataSource<UserData>;
 
@@ -77,8 +78,6 @@ export class HomeComponent implements AfterViewInit {
     }
   }
 }
-
-/** Builds and returns a new User. */
 function createNewUser(id: number): UserData {
   const name =
     NAMES[Math.round(Math.random() * (NAMES.length - 1))] +

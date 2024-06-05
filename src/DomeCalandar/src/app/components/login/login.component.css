@@ -7,10 +7,14 @@
   
   mat-card {
     width: 400px; /* Adjust width as needed */
-    height: 300px;
-    padding: 5%;
+    height: 400px;
+    padding: 3%;
   }
   
+  mat-card-header{
+    justify-content: center;
+    margin-bottom: 10%;
+  }
   .example-full-width {
     width: 100%;
   }

@@ -13,7 +13,7 @@ using System.Security.Principal;
 
 namespace WebAPI.Controllers
 {
-
+    [Authorize]
     public class EventController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
             return Ok(pendingEvents);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("getAll/events")]
         public async Task<ActionResult<PageList<Event>>> GetAll([FromQuery] GetAllEventQuery query)
         {

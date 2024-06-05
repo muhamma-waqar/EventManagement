@@ -1,6 +1,10 @@
 <div class="card-container">
     <form [formGroup]="loginForm" (submit)="onSubmit()">
     <mat-card class="mat-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Username</mat-label>
         <input matInput type="email" id="email" formControlName="email" placeholder="username">
