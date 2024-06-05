@@ -1,0 +1,27 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  mat-card {
+    width: 400px; /* Adjust width as needed */
+    height: 300px;
+    padding: 5%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  .example-button-row{
+    margin-top: 10%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .button-stye{
+    margin-right: 2%;
+  }
