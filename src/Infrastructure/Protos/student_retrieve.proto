@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+package School.Student;
+
+message StudentRequest {
+   int32 Id = 1;
+}
+message StudentResponse {
+   string Name = 1;
+   string StudyProgram = 2;
+   string RollNo = 3;
+   string Marks = 4;
+}
+service TestGrpc {
+   rpc GetStudent (StudentRequest) returns (StudentResponse);
+}

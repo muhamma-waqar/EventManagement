@@ -1,5 +1,9 @@
 <app-menu></app-menu>
-<div class="container">
+<p homeDirective="lightblue">Hover over this text to see the lightblue highlight.</p>
+<div>
+  <p [hidden]="!myVar">This paragraph is visible when myVar is true.</p>
+</div>
+<div ngIf="!myVar" class="container">
     <mat-card class="main-card">
         <mat-card-content>
             <div class="inner-container">

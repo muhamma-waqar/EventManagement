@@ -6,9 +6,10 @@ import { EventComponent } from './components/event/event.component';
 import { HomeComponent } from './components/home/home.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
-    {path:'', component: LoginComponent},
+    {path:'', component: LoginComponent, canActivate: [AuthGuard]},
     {path: 'menu', component: MenuComponent},
     {path: 'addEvent', component: EventComponent },
     {path: 'home', component: HomeComponent},

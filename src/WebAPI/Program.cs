@@ -56,6 +56,11 @@ builder.Services.AddScoped<IRedisCacheService, RedisCacheService>();
 //builder.Services.AddTransient<IPrincipal>(provider => provider.GetService<IHttpContextAccessor>().HttpContext.User);
 builder.Services.RegisterMyOptions<AuthenticationSettings>();
 ConfigureJwtAuthentication.ConfigureLocalJwtAuthentication(builder.Services, builder.Configuration.GetMyOptions<AuthenticationSettings>());
+
+builder.Services.AddGrpcClient<School.Student.TestGrpc.TestGrpcClient>(option =>
+{
+    option.Address = new Uri("https://localhost:7299/swagger/index.html");
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

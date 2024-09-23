@@ -51,6 +51,7 @@ private loginResponse = new LoginResponseDto
       this.loginService.login(email,password).subscribe(
         (response) =>{
         this.loginResponse = response
+        this.loginService.loginedIn = true;
         console.log(response)
         let token = response.accessToken.replace(/^"|"$/g, '');
         this.localStorage.setItem('token',token);
@@ -59,6 +60,7 @@ private loginResponse = new LoginResponseDto
       (error) =>{
         console.log('login failed',error);
         this.router.navigateByUrl('home')
+        this.loginService.loginedIn = true;
       })
     }
   }

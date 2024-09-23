@@ -2,6 +2,7 @@
 using Application.Quaries;
 using Domain.Dependencies.Repositories.Comman;
 using Domain.Entities;
+using Grpc.Net.Client;
 using Infrastructure.Identity.Core.Services;
 using Infrastructure.Services;
 using MediatR;
@@ -18,8 +19,11 @@ namespace WebAPI.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IUserProvider _userIdProvider;
-        public EventController(IMediator mediator, IUserProvider userProvider) 
+
+        private readonly School.Student.TestGrpc.TestGrpcClient _testGrpcClient;
+        public EventController(IMediator mediator, IUserProvider userProvider, School.Student.TestGrpc.TestGrpcClient client) 
         { 
+            this._testGrpcClient = client;
             this._mediator = mediator;
             this._userIdProvider = userProvider ?? throw new ArgumentNullException(nameof(userProvider));
         }
@@ -28,8 +32,11 @@ namespace WebAPI.Controllers
         [Route("event/create")]
         public async Task<ActionResult<Event>> CreateAsync([FromBody] AddEventCommand command)
         {
-            command.UserId = this._userIdProvider.GetUserId(); ;
-           var result = await this._mediator.Send(command);
+            //using var channel = GrpcChannel.ForAddress("https://localhost:7299");
+            var response = this._testGrpcClient.GetStudentAsync(new School.Student.StudentRequest { Id = 1 });
+            command.UserId = this._userIdProvider.GetUserId();
+
+            var result = await this._mediator.Send(command);
             return Ok(result);
         }
 

@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table'
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { LoginService } from '../../services/login.service';
 
 export interface UserData {
   id: string;
@@ -63,20 +64,21 @@ const NAMES: string[] = [
     MatSortModule, 
     MatPaginatorModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
+  exportAs: 'homeDirective'
 })
 export class HomeComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
   dataSource: MatTableDataSource<UserData>;
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  myVar: boolean = false;
 
-    // Assign the data to the data source for the table to render
+  constructor(private loginService : LoginService) {
+    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    console.log('check is loging',this.loginService.loginedIn)
+    if(this.loginService.loginedIn) this.myVar = true;
     this.dataSource = new MatTableDataSource(users);
   }
 
