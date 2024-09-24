@@ -1,4 +1,5 @@
 using ProtoBuf.Grpc.Reflection;
+using ProtoBuf.Grpc.Server;
 using SchoolManagement.Grpc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<ITestGrpc, TestGrpcService>();
 builder.Services.AddSwaggerGen();
 
-
-builder.Services.AddGrpc();
+builder.Services.AddCodeFirstGrpc();
 
 var app = builder.Build();
 app.UseRouting();
@@ -24,7 +24,17 @@ app.UseEndpoints(endpoint =>
         var generator = new SchemaGenerator();
         var schema = generator.GetSchema<ITestGrpc>();
 
-        context.Response.ContentType = "application/octet-stream"; // or "text/plain"
+        //context.Response.ContentType = "application/octet-stream"; // or "text/plain"
+        await context.Response.WriteAsync(schema);
+    });
+    // server streaming 
+    endpoint.MapGrpcService<TestGrpcStreamService>();
+    endpoint.MapGet("/proto/studentstream_retrieve.proto", async context =>
+    {
+        var generator = new SchemaGenerator();
+        var schema = generator.GetSchema<ITestGrpcServerStreaming>();
+
+        //context.Response.ContentType = "application/octet-stream"; // or "text/plain"
         await context.Response.WriteAsync(schema);
     });
 });

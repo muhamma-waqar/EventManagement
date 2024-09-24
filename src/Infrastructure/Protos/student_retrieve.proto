@@ -2,7 +2,7 @@
 package School.Student;
 
 message StudentRequest {
-   int32 Id = 1;
+   string Id = 1;
 }
 message StudentResponse {
    string Name = 1;

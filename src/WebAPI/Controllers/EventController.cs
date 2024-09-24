@@ -20,24 +20,26 @@ namespace WebAPI.Controllers
         private readonly IMediator _mediator;
         private readonly IUserProvider _userIdProvider;
 
-        private readonly School.Student.TestGrpc.TestGrpcClient _testGrpcClient;
-        public EventController(IMediator mediator, IUserProvider userProvider, School.Student.TestGrpc.TestGrpcClient client) 
+       // private readonly School.Student.TestGrpc.TestGrpcClient _testGrpcClient;
+       private readonly School.Student.TestGrpcStream.TestGrpcStreamClient _testGrpcStreamClient;
+        public EventController(IMediator mediator, IUserProvider userProvider, School.Student.TestGrpcStream.TestGrpcStreamClient client) 
         { 
-            this._testGrpcClient = client;
+            this._testGrpcStreamClient = client;
             this._mediator = mediator;
             this._userIdProvider = userProvider ?? throw new ArgumentNullException(nameof(userProvider));
         }
 
         [HttpPost]
         [Route("event/create")]
-        public async Task<ActionResult<Event>> CreateAsync([FromBody] AddEventCommand command)
+        public async Task<ActionResult> CreateAsync([FromBody] AddEventCommand command)
         {
             //using var channel = GrpcChannel.ForAddress("https://localhost:7299");
-            var response = this._testGrpcClient.GetStudentAsync(new School.Student.StudentRequest { Id = 1 });
+            var response =  this._testGrpcStreamClient.GetStudentStream(new School.Student.StudentSteamingRequest { Id = "1" });
             command.UserId = this._userIdProvider.GetUserId();
-
-            var result = await this._mediator.Send(command);
-            return Ok(result);
+            //response.ResponseStream.Current
+            //var resutl = new Event()
+            //var result = await this._mediator.Send(command);
+            return Ok(response.ResponseStream.Current);
         }
 
         [HttpGet]

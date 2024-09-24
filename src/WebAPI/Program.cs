@@ -59,7 +59,12 @@ ConfigureJwtAuthentication.ConfigureLocalJwtAuthentication(builder.Services, bui
 
 builder.Services.AddGrpcClient<School.Student.TestGrpc.TestGrpcClient>(option =>
 {
-    option.Address = new Uri("https://localhost:7299/swagger/index.html");
+    option.Address = new Uri("https://localhost:7299");
+});
+
+builder.Services.AddGrpcClient<School.Student.TestGrpcStream.TestGrpcStreamClient>(option =>
+{
+    option.Address = new Uri("https://localhost:7299");
 });
 var app = builder.Build();
 
